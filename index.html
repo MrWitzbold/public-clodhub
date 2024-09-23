@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="static/icon.ico" type="image/x-icon">
+    <title>The Clodhub</title>
+	<script type="module">
+		import { springyEmojiCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
+		
+		new springyEmojiCursor({ emoji: "👽" });
+	</script>
+    <link href="static/materialize.min.css" rel="stylesheet">
+		<style>
+        body {
+            background-color: #65ae84;
+        }
+		
+		.sidenav {
+            background-color: #acdf7d; /* Change this to your desired sidenav background color */
+        }
+		
+        main {
+            margin-left: 240px; /* Adjust to account for fixed sidenav */
+        }
+		
+		a {
+			color: #000000;
+			font-size: 20px;
+		}
+
+        .custom-line {
+            border: none; /* Remove default border */
+            height: 2px;  /* Set the height of the line */
+            background-color: #000; /* Set the color of the line */
+            margin: 20px 0; /* Set the margin around the line */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function home()
+        {
+            document.getElementById("container").innerHTML = `
+            <a>Menu principal</a><br><br>
+			<a href="https://viamao.educarweb.net.br/Home" target="__blank">Educarweb</a><br>
+			<a href="https://www.viamao.rs.gov.br/" target="__blank">Prefeitura de Viamão</a><br>
+			<a href="https://www.estado.rs.gov.br/inicial" target="__blank">Site do Estado do Rio Grande do Sul</a><br>
+			<a href="https://educacao.rs.gov.br/inicial" target="__blank">Secretaria da educação</a><br>
+			<a href="https://viamao.1doc.com.br/?pg=painel/listar&l=1" target="__blank">1Doc</a><br>
+			<a href="https://mail.google.com/mail/u/1/?ogbl#inbox" target="__blank">Gmail</a><br>
+			<a href="https://drive.google.com/drive/u/1/home" target="__blank">Google Drive</a><br><br>
+			
+			<form method="post" id="noteForm">
+                    <input type="text" name="note" placeholder="Anotação" id="note"></input>
+                    <br>
+                    <input type="submit" class="btn-small waves-effect waves-light" value="Enviar"></input>
+            </form>
+			<h3>Anotações</h3>
+			<hr class="rounded">
+			<div id="notes"></div>
+            `
+			const notesDiv = document.getElementById('notes');
+			const notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+			// Update the HTML to show the most recent note first
+			notesDiv.innerHTML = notes.map(note => `<p>${note}</p>`).join('');
+        }
+
+        function inform()
+        {
+            document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Geral</h3>
+            <a>Avisar sempre a diretoria quando alguém buscar o filho mais cedo, para que eles não acabem procurando.</a><br><br>
+			<a>Anos iniciais = 1º ao 5º ano</a><br>
+			<a>Anos finais = resto</a><br><br>
+			<a>INEP da escola: 43167853</a><br>
+			<a>Endereço da escola: R. Padre Cacique, 265 - Vila Augusta, Viamão - RS, 94510-110</a><br>
+			<a>Endereço da Central de Vagas: Av. Sen. Salgado Filho, 2205 - Cecília, Viamão - RS, 94470-000, atrás da UPA 24 horas.</a><br>
+			<hr class="rounded">
+			<h3>Internet</h3>
+			<a>Modelo do roteador: G-1425GA</a><br>
+			<a>Número do cliente Oi: 6004083266</a><br>
+			<hr class="rounded">
+            `
+        }
+		
+		function matricula()
+        {
+            document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Documentos</h3>
+            <a>Identidade da mãe</a><br>
+			<a>Identidade do aluno</a><br>
+			<a>Comprovante de endereço</a><br>
+			<a>Carteira de vacinação</a><br>
+			<a>Designação de vaga</a><br>
+			<a>Histórico da outra escola de for transferência</a><br><br>
+			<a>- Não é permitido recusar matrícula por falta de documento.</a>
+			<hr class="rounded">
+			<h3>Após matrícula, não esquecer</h3>
+			<a>Informar escola anterior, pedir histórico</a><br>
+			<a>Adicionar números no Whatsapp</a><br>
+			<a>Se for municipal, pedir para o responsável trazer os livros da outra escola</a><br>
+			<a>Se for de outro município, fazer pedido dos livros</a><br>
+			<hr class="rounded">
+            `
+        }
+		
+		function vagas()
+        {
+            document.getElementById("container").innerHTML = `
+			<h3>Vagas permitidas por turma</h3>
+            <a>Jardim 1 = 20</a><br>
+			<a>Jardim 2 = 25</a><br>
+			<a>1º ano = 25</a><br>
+			<a>2º ao 5 = 30</a><br>
+			<a>6º ao 9º = 35</a><br>
+            `
+        }
+		
+		function onedoc()
+		{
+			document.getElementById("container").innerHTML = `
+            <h3>Como entrar no 1doc</h3>
+			<a>Entrar em </a>
+			<a href="https://www.viamao.rs.gov.br/" target="__blank">https://www.viamao.rs.gov.br/</a><br><br>
+			<a>Processos > processos do servidor> entrar > sargentoraymundo@edu.viamao.rs.gov.br:@Sargento2023 > protocolos > prosseguir</a><br>
+			<a></a><br>
+			<a></a><br>
+			<a></a><br>
+			<a></a><br>
+			<a></a><br>
+			<a></a><br>
+            `
+		}
+		
+		function livros()
+        {
+            document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como solicitar livros no 1doc</h3>
+			<a>Importante: Para 1º e 2º ano, avisar a Cibele, ela vai imprimir ao invés de pedirmos os livros.</a><br>
+            <a>Nome completo</a><br>
+            <a>Série</a><br>
+            <a>Escola (estadual ou outro município, se for de viamão, já tem que trazer os livros da outra) de onde veio para Sargento Raymundo</a><br>
+			<a>Data da matrícula</a><br><br>
+            <a>Documento: Memorando</a><br>
+            <a>Setor: SME-DPED</a><br>
+            <a>Responsável: Jacinair, Fundamental 1</a><br>
+            <a>Responsável: Priscila, Fundamental 2</a><br>
+            <a>1º ao 5º ano = Fundamental 1</a><br>
+            <a>6º ao 9º = Fundamental 2</a><br>
+			<hr class="rounded">
+			<h3>Exemplo</h3>
+            <a>Oi, boa tarde.</a><br>
+			<a>Venho por meio deste solicitar os livros do 7º ano para a aluna Julia Amaral da Silva, matriculada na turma 71. Ela foi matriculada no dia 14/06/2024 transferida da escola Almirante Bacelar de Porto Alegre.</a>
+			<hr class="rounded">
+            `
+        }
+		
+		function laudos()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como ver se a turma tem laudos</h3>
+            <a>Consultas > vagas por turno</a><br><br>
+			<a>Lembrando que cada laudo significa uma vaga a menos do que o sistema informa.</a>
+			<hr class="rounded">
+			<h3>Como adicionar laudo</h3>
+            <a>Pessoa > Ficha de saúde</a><br>
+			<hr class="rounded">
+            `
+		}
+		
+		function historicos()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como emitir históricos</h3>
+            <a>Marcar quase todas as opções no sistema, exceto o negócio de assinaturas.</a><br>
+			<a>Fazer 3 cópias, duas vão para o responsável, uma fica na ficha do aluno.</a><br>
+			<a>Podemos pedir 15 dias por lei se precisar.</a><br>
+			<a>Lembrar que as informações necessárias existem nas atas.</a>
+			<hr class="rounded">
+            `
+		}
+		
+		function passagem()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como fazer solicitação de passagem escolar</h3>
+            <a>Lembrar que passagem só vale para ir até a escola.</a><br>
+			<a href="https://docs.google.com/spreadsheets/d/1WdEMnS8YQ-Pv_mN5XGwtZLdukbT-3WmoLp_cfnItPkI/edit?usp=sharing" target="__blank">Colocar na planilha dos pedidos de passagem escolar.</a><br>
+			<a>1. Entrar em </a>
+			<a href="https://www.viamao.rs.gov.br/" target="__blank">https://www.viamao.rs.gov.br/</a><br>
+			<a>Processos > processos digitais > entrar > sargentoraymundo@edu.viamao.rs.gov.br:@Sargento2023 > protocolos > prosseguir</a><br>
+			<a>2. Selecionar solicitação de passagem escolar</a><br>
+			<a>3. Pegar dados dos alunos</a><br>
+			<a>4. Enviar documentos (não pode faltar nenhum obrigatório) (no drive ou na pasta amarela na gaveta de documentação ativo)</a><br>
+			<a>5. Enviar atestado de matrícula e frequência</a><br>
+			<a>6. Pegar números atualizados</a><br>
+			<a>7. Se tiver email, colocar, se não, colocar o da escola.</a><br>
+			<a>8. Anotar o número do protocolo e dar para o responsável, porque vai precisar quando a empresa entrar em contato.</a><br>
+			<a href="docs/passagem1.pdf" target="__blank">Imprimir e entregar pra preencher.</a><br>
+			<hr class="rounded">
+            `
+		}
+		
+		function uniformes()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+            <a>Ano passado o diretor pegou os tamanhos das roupas dos alunos.</a><br>
+			<a>Esse ano o diretor pediu uniformes com 1 tamanho maior para todos os alunos.</a><br>
+			<a>Os alunos vão provar os uniformes na escola.</a><br>
+			<a>Se o uniforme estiver do tamanho errado, a escola vai pedir a entrega do tamanho certo.</a>
+			<hr class="rounded">
+            `
+		}
+		
+		function boletins()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como emitir um boletim ou parecer</h3>
+            <a>Lembrar de colocar se é anos iniciais ou finais.</a><br>
+			<a>Notas > Emissão de boletim escolar</a>
+			<hr class="rounded">
+            `
+		}
+		
+		function chamada()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como imprimir chamada de turmas</h3>
+            <a>Relatórios > Registro de frequência</a><br>
+			<hr class="rounded">
+            `
+		}
+		
+		function bolsa()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como adicionar aluno ao bolsa família</h3>
+            <a>Pessoa física > alterar > complementares > observações</a><br>
+			<hr class="rounded">
+			<h3>Frequência para bolsa família</h3>
+			<a>Consultas estatísticas > Estatística de frequência > Imprimir > Atestado de frequência mensal</a>
+			<hr class="rounded">
+            `
+		}
+		
+		function suporte()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como abrir chamado no suporte do Educarweb</h3>
+            <a>Clicar no canto superior direito, depois em suporte. sargentoraymundo@edu.viamao.rs.gov.br:293949</a>
+			<hr class="rounded">
+            `
+		}
+		
+		function merenda()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como enviar mapa da alimentação</h3>
+            <a>1. Entrar no 1doc</a><br>
+            <a>2. Novo > documento</a><br>
+            <a>3. Nomear como Mapa Merenda Sargento Raymundo / Estoque da Merenda</a><br>
+            <a>4. Classificação estoque de alimentação</a><br>
+            <a>5. Enviar para SME - Setor de alimentação</a><br>
+			<hr class="rounded">
+            `
+		}
+		
+		function inscrevervagas()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como funciona a inscrição de vagas no fim do ano</h3>
+            <a>No final do ano abrem inscrições para concorrer a vagas para escolas da rede dos Jardins, área e anos finais. Ao fazer a inscrição, os pais podem concorrer a vagas a umas 3 escolas da área para garantir vaga. Podem entrar sem fazer a inscrição, mas é muito fácil perder a vaga.
+			Inscrição para vagas do Jardim é no site do município, o resto é no site do governo do estado. As crianças que ganham os sorteios entram na escola sem precisar passar pela central de vagas. Quem passa pela central de vagas é quem entra depois ou quer transferência após o término das inscrições.
+			Para Jardim 1, Jardim 2 e 1º ano, a data base para a idade é 31 de março, se até 31 de março fizer 4 anos, pode entrar no Jardim 1, se fez 4 anos só em 1 de abril, já não pode mais, fica no maternal. Se até 31 de março fizer 5 anos, pode entrar no Jardim 2, se mais tarde, Jardim 1. Para o 1º ano, tem que ter feito 6 anos de idade até dia 31 de março, se não continua no jardim 2. A partir do 2º ano a idade não importa mais.
+			</a><br><br>
+
+			<table border="1">
+			<tr>
+			<td>4 anos em 31/03/2024</td>
+			<td>Jardim 1</td>
+			</tr>
+			<tr>
+			<td>5 anos em 31/03/2024</td>
+			<td>Jardim 2</td>
+			</tr>
+			<tr>
+			<td>6 anos em 31/03/2024</td>
+			<td>1 ano</td>
+			</tr>
+			</table>
+            `
+		}
+		
+		function rematricula()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como fazer a rematrícula automática</h3>
+            <a>1. Trocar o ano do sistema para o ano seguinte</a><br>
+            <a>2. Entrar em matrícula -> matrícula automática</a><br>
+            <a>3. Selecionar a turma de origem e a turma de destino</a><br>
+            <a>4. Passar todos os alunos, retornar os que não têm frequência</a><br>
+			<hr class="rounded">
+            `
+		}
+		
+		function nomes()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como pegar nomes dos alunos formatados</h3>
+            <a>1. Consultas > Estudantes por turma</a><br>
+            <a>2. Imprimir como arquivo .html</a><br>
+            <a>3. Converter para texto</a><br>
+            <a>4. Colocar o texto no seguinte programa em python:</a><br>
+			
+			<div class="code-box">
+			<pre><code>
+			import re
+		
+			# Sample HTML string
+			html_string = """
+			<span style="font-family: Tahoma; color: #000000; font-size: 8px; line-height: 1.2070312;">BIANCA SILVA RIBEIRO</span></td>
+			<span style="font-family: Tahoma; color: #000000; font-size: 8px; line-height: 1.2070312;">JOHN DOE</span></td>
+			<span style="font-family: Tahoma; color: #000000; font-size: 8px; line-height: 1.2070312;">JANE123 DOE</span></td>
+			<span style="font-family: Tahoma; color: #000000; font-size: 8px; line-height: 1.2070312;">SINGLE</span></td>
+			<span style="font-family: Tahoma; color: #000000; font-size: 8px; line-height: 1.2070312;">VINÍCIUS PRESTES PINHEIRO</span></td>
+			"""
+
+			# Regular expression to match valid names including Unicode characters
+			pattern = r'<span style="font-family: Tahoma; color: #000000; font-size: 8px; line-height: 1\.2070312;">([\w\sÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]+)</span>'
+			
+			# Find all matches
+			names = re.findall(pattern, html_string)
+			
+			# Filter out names that don't contain at least one space or include numbers
+			valid_names = [name for name in names if " " in name and not re.search(r'\d', name)]
+			
+			# Print the valid names
+			for name in valid_names:
+				print(name)
+			print("got " + str(len(valid_names)) + " students")
+			</code></pre>
+</div>
+
+			<hr class="rounded">
+            `
+		}
+		
+		function biometria()
+		{
+			document.getElementById("container").innerHTML = `
+			<hr class="rounded">
+			<h3>Como fazer a biometria</h3>
+            <a>1. Preencher este </a>
+			<a href="docs/biometria.docx" target="__blank">documento</a>
+			<a> com os dados do funcionário.</a><br>
+			<a>2. A data vai lá no final, mas se tiver data e/ou hora do exame, preencher também.</a><br>
+			<hr class="rounded">
+            `
+		}
+    </script>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+        <li><img src="static/logo.jpg" height=50% width=50%></img></li>
+        <li><a href="javascript:void(0);" onclick="home()">Home</a></li>
+        <li><a href="javascript:void(0);" onclick="inform()">Informações da escola</a></li>
+		<li><a href="javascript:void(0);" onclick="matricula()">Matricula</a></li>
+		<li><a href="javascript:void(0);" onclick="vagas()">Vagas</a></li>
+		<li><a href="javascript:void(0);" onclick="uniformes()">Uniformes</a></li>
+		<li><a href="javascript:void(0);" onclick="historicos()">Históricos</a></li>
+		<li><a href="javascript:void(0);" onclick="boletins()">Boletim escolar</a></li>
+		<li><a href="javascript:void(0);" onclick="onedoc()">Como entrar no 1doc</a></li>
+		<li><a href="javascript:void(0);" onclick="biometria()">Biometria</a></li>
+		<li><a href="javascript:void(0);" onclick="livros()">Solicitação de livros</a></li>
+		<li><a href="javascript:void(0);" onclick="laudos()">Tudo sobre laudos</a></li>
+		<li><a href="javascript:void(0);" onclick="passagem()">Solicitação de passagem escolar</a></li>
+		<li><a href="javascript:void(0);" onclick="chamada()">Chamada</a></li>
+		<li><a href="javascript:void(0);" onclick="bolsa()">Bolsa família</a></li>
+		<li><a href="javascript:void(0);" onclick="suporte()">Suporte técnico</a></li>
+		<li><a href="javascript:void(0);" onclick="merenda()">Mapa da alimentação</a></li>
+		<li><a href="javascript:void(0);" onclick="inscrevervagas()">Vagas fim do ano</a></li>
+		<li><a href="javascript:void(0);" onclick="rematricula()">Rematrícula automática</a></li>
+		<li><a href="javascript:void(0);" onclick="nomes()">Nomes dos alunos formatado</a></li>
+    </ul>
+
+    <main>
+        <div class="container">
+            <div class="section">
+                <h1 class="header">Home of Clodhub</h1>
+                <hr class="custom-line">
+				<img src="static/peridot.gif" height=200 width=200></img>
+                <hr class="custom-line">
+				<br>
+                <div id="container">
+                    
+                </div>
+				
+				<script>
+					var container = document.getElementById("container");
+
+					// Check if the div is empty
+					if (!container.innerHTML.includes("a")) 
+					{
+						home()
+					}
+				</script>
+            </div>
+        </div>
+    </main>
+
+    <script src="static/materialize.min.js"></script>
+	<script src="static/notes.js"></script>
+</body>
+</html>
